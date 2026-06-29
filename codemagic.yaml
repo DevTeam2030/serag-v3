@@ -1,0 +1,21 @@
+workflows:
+  build_ios_unsigned:
+    name: Build iOS Unsigned IPA
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      vars:
+        APP_ID: "com.serag.app"
+    scripts:
+      - name: Install dependencies
+        script: |
+          flutter clean
+          flutter pub get
+      - name: Build iOS (unsigned)
+        script: |
+          flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/iphoneos/*.ipa
+      - build/ios/ipa/*.ipa
+
