@@ -65,7 +65,9 @@ class _PricesScreenState extends State<PricesScreen> {
                 }
 
                 if(state is PricesLoaded){
-
+                  if (state.prices.isEmpty) {
+                    return const _EmptyPricesWidget();
+                  }
                   return ListView.builder(
 
                     padding: const EdgeInsets.all(16),
@@ -256,4 +258,47 @@ class _PricesScreenState extends State<PricesScreen> {
 
   }
 
+}
+
+
+class _EmptyPricesWidget extends StatelessWidget {
+  const _EmptyPricesWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(
+              Icons.price_check_outlined,
+              size: 80,
+              color: Colors.grey,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'لا توجد أسعار حتى الآن',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'سيتم عرض الأسعار بمجرد إضافتها.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

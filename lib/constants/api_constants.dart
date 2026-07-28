@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseUrl = 'https://devteam.website/serag-farm/public/api';
+  static const String baseUrl = 'https://serag-farms.com/public/api';
   // static const String baseUrl = 'https://serag-farms.com/public/api';
   static const String loginEndpoint = '/auth/login';
   static const String registerEndpoint = '/auth/register';

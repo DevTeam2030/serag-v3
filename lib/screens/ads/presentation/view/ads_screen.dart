@@ -49,6 +49,9 @@ class _AdsScreenState extends State<AdsScreen> {
                 }
             
                 if (state is AdsLoaded) {
+                  if (state.ads.isEmpty) {
+                    return const _EmptyAdsWidget();
+                  }
                   return ListView.builder(
                     padding: const EdgeInsets.all(
                       16,
@@ -138,6 +141,49 @@ class _AdsScreenState extends State<AdsScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+
+
+class _EmptyAdsWidget extends StatelessWidget {
+  const _EmptyAdsWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.campaign_outlined,
+              size: 80,
+              color: Colors.grey,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'لا توجد إعلانات حتى الآن',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 8),
+            Text(
+              'سيتم عرض الإعلانات الجديدة بمجرد إضافتها.',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
